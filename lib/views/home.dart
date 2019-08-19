@@ -26,6 +26,7 @@ class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin 
   List<Widget> _list = List();
   String appBarTitle = tabData[0]['text'];
 
+  //底部导航
   List<BottomNavigationBarItem> _myTabs = [];
 
   @override
@@ -45,7 +46,7 @@ class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin 
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        title: Text("nothing"),),
+        title: Text(appBarTitle),),
       body: IndexedStack(
         index: _currentIndex,
         children: _list,
@@ -60,7 +61,9 @@ class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin 
         //fixed：固定
         type: BottomNavigationBarType.fixed,
 
-        fixedColor: Color(0xFFC91B3A),
+//        fixedColor: Color(0xFFC91B3A),
+        unselectedItemColor: Color(0xFF999999),
+        selectedItemColor: Color(0xFFC91B3A),
       ),
     );
   }
