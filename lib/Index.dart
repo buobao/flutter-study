@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/views/home.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 
 const int ThemeColor = 0xFFC91B3A;
@@ -18,6 +19,36 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+
+  bool _hasLogin = false;
+  bool _isLoading = false;
+
+
+  @override
+  void initState() {
+    super.initState();
+
+
+  }
+
+  showWelcomePage(){
+    if (_isLoading) {
+      return Container(
+        color: const Color(ThemeColor),
+        child: Center(
+          child: SpinKitPouringHourglass(color: Colors.white),
+        ),
+      );
+    } else {
+      // 判断是否已经登录
+      if (_hasLogin) {
+        return HomePage();
+      } else {
+        return HomePage();
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -35,7 +66,7 @@ class MyAppState extends State<MyApp> {
           size: 35.0,
         ),
       ),
-      home: new Scaffold(body: new HomePage(),),
+      home: new Scaffold(body: showWelcomePage(),),
       debugShowCheckedModeBanner: false,
     );
   }
